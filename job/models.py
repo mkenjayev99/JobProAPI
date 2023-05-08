@@ -12,7 +12,6 @@ class Job(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     types = models.ManyToManyField(Type)
     salary = models.DecimalField(decimal_places=2, max_digits=4, null=True, blank=True)
-    working_day = models.IntegerField()
     tags = models.ManyToManyField(Tag)
     is_active = models.BooleanField(default=True)
     created_date = models.DateTimeField(auto_now_add=True)
