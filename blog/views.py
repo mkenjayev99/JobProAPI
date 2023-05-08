@@ -3,8 +3,8 @@ from account.permissions import IsAdminUserOrReadOnly
 from rest_framework import generics
 from .models import Category, Tag, SubContent, Comment, Blog
 from .serializers import (
-    CategorySerializer,
-    TagSerializer,
+    CategoryBlogSerializer,
+    TagBlogSerializer,
     CommentSerializer,
     SubContentSerializer,
     BlogSerializer,
@@ -32,13 +32,13 @@ class SubContentRUDAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 class CategoryListCreateAPIView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+    serializer_class = CategoryBlogSerializer
     permission_classes = [IsAdminUserOrReadOnly]
 
 
 class TagRUDAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Tag.objects.all()
-    serializer_class = TagSerializer
+    serializer_class = TagBlogSerializer
     permission_classes = [IsAdminUserOrReadOnly]
 
 

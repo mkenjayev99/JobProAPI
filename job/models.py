@@ -25,7 +25,7 @@ class ApplyJob(models.Model):
     candidate = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='apply')
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     resume = models.FileField(upload_to='resumes/')
-    created_date = models.DateTimeField(auto_now_add=True)
+    message = models.TextField()
 
     def __str__(self):
         return f"{self.candidate} - {self.job}"
