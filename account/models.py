@@ -46,6 +46,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=50, verbose_name='Last name', null=True)
     image = models.ImageField(upload_to=file_path, null=True, blank=True)
     role = models.IntegerField(choices=ROLE, default=1)
+    location = models.ForeignKey('main.City', on_delete=models.CASCADE, null=True, blank=True)
     is_superuser = models.BooleanField(default=False, verbose_name='Super user')
     is_active = models.BooleanField(default=True, verbose_name='Active user')
     is_staff = models.BooleanField(default=False, verbose_name='Staff user')

@@ -1,8 +1,8 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
+from rest_framework import permissions
 
 from .models import Account, WorkHistory
-from rest_framework import permissions
 from .serializers import LoginSerializer, WorkHistorySerializer, RegisterSerializer, AccountSerializer
 from .permissions import IsOwnerOrReadOnly
 

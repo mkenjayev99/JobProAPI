@@ -18,7 +18,6 @@ class City(models.Model):
 
 class Company(models.Model):
     title = models.CharField(max_length=218)
-    location = models.ForeignKey(City, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -45,13 +44,6 @@ class Tag(models.Model):
         return self.title
 
 
-class Type(models.Model):
-    title = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.title
-
-
 class Subscribe(models.Model):
     email = models.EmailField(unique=True)
 
@@ -67,4 +59,3 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.email} subject: {self.subject}"
-

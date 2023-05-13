@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from account.serializers import CitySerializer
-from .models import Category, Tag, City, State, Company, Type, Position, Subscribe, Contact
+from .models import Category, Tag, City, State, Company, Position, Subscribe, Contact
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -21,18 +20,18 @@ class StateSerializer(serializers.ModelSerializer):
         fields = ['id', 'title']
 
 
-class CompanySerializer(serializers.ModelSerializer):
-    location = CitySerializer(read_only=True)
+class CitySerializer(serializers.ModelSerializer):
+    state = StateSerializer
 
+    class Meta:
+        model = City
+        fields = ['id', 'title', 'state']
+
+
+class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
-        fields = ['id', 'location']
-
-
-class TypeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Type
-        fields = ['id', 'type']
+        fields = ['id', 'title']
 
 
 class PositionSerializer(serializers.ModelSerializer):

@@ -1,11 +1,10 @@
 from rest_framework import permissions
 from account.permissions import IsAdminUserOrReadOnly
 from rest_framework import generics
-from .models import Subscribe, Contact, Category, Tag, Type, Position, Company
+from .models import Subscribe, Contact, Category, Tag, Position, Company
 from .serializers import (ContactSerializer,
                           CategorySerializer,
                           TagSerializer,
-                          TypeSerializer,
                           PositionSerializer,
                           CompanySerializer,
                           SubscribeSerializer
@@ -34,11 +33,6 @@ class TagListCreateApiView(generics.ListCreateAPIView):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
     permission_classes = [IsAdminUserOrReadOnly]
-
-
-class TypeListCreateApiView(generics.ListCreateAPIView):
-    queryset = Type.objects.all()
-    serializer_class = TypeSerializer
 
 
 class PositionListCreateApiView(generics.ListCreateAPIView):

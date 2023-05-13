@@ -2,40 +2,41 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 from .models import Job, ApplyJob, Like
-from main.serializers import TypeSerializer, CompanySerializer, CategorySerializer, TagSerializer
-from account.serializers import AccountSerializer, CitySerializer
+from main.serializers import CompanySerializer, CategorySerializer, TagSerializer, PositionSerializer
+from account.serializers import AccountSerializer
 
 
 class JobSerializer(serializers.ModelSerializer):
-    types = TypeSerializer(read_only=True)
+    position = PositionSerializer(read_only=True)
     company = CompanySerializer(read_only=True)
     author = AccountSerializer(read_only=True)
+    tags = TagSerializer(read_only=True)
 
     class Meta:
         model = Job
-        fields = ['id', 'author', 'title', 'company', 'category', 'types', 'salary', 'tags']
+        fields = ['id', 'author', 'title', 'company', 'category', 'position', 'salary', 'tags']
 
 
 class JobRetrieveSerializer(serializers.ModelSerializer):
-    types = TypeSerializer(read_only=True)
-    company = CompanySerializer(read_only=True)
     author = AccountSerializer(read_only=True)
+    position = PositionSerializer(read_only=True)
+    company = CompanySerializer(read_only=True)
     category = CategorySerializer(read_only=True)
     tags = TagSerializer(read_only=True)
 
     class Meta:
         model = Job
-        fields = ['id', 'author', 'title', 'position', 'company', 'location', 'category', 'types',
+        fields = ['id', 'author', 'title', 'position', 'company', 'location', 'category',
                   'salary', 'tags', 'is_active', 'created_date']
 
 
 class JobPostSerializer(serializers.ModelSerializer):
     company = CompanySerializer(read_only=True)
-    types = TypeSerializer(read_only=True)
+    tags = TagSerializer(read_only=True, many=True)
 
     class Meta:
         model = Job
-        fields = ['id', 'author' 'title', 'salary', 'company', 'types']
+        fields = ['id', 'author', 'title', 'salary', 'company', 'tags']
 
     def validate(self, attrs):
         request = self.context['request']
@@ -77,3 +78,8 @@ class ApplyJobSerializer(serializers.ModelSerializer):
                 raise ValidationError('You are not candidate!')
             return attrs
 
+
+class ApplyJobGetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ApplyJob
+        fields = ['candidate', 'job', 'resume', 'message']

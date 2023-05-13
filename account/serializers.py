@@ -1,30 +1,13 @@
 from django.contrib.auth import authenticate
 from rest_framework import serializers
 from rest_framework.exceptions import AuthenticationFailed
-from main.models import City, State
 from .models import Account, WorkHistory
 
 
-class StateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = State
-        fields = ['id', 'title']
-
-
-class CitySerializer(serializers.ModelSerializer):
-    state = StateSerializer(read_only=True)
-
-    class Meta:
-        model = City
-        fields = ['id', 'title', 'state']
-
-
 class AccountSerializer(serializers.ModelSerializer):
-    city = CitySerializer(read_only=True)
-
     class Meta:
         model = Account
-        fields = ['id', 'email', 'first_name', 'last_name', 'image', 'role', 'bio', 'city']
+        fields = ['id', 'email', 'first_name', 'last_name', 'image', 'role', 'bio', 'location']
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -43,7 +26,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         password2 = attrs.get('password2')
 
         if password != password2:
-            raise serializers.ValidationError({'success': False, 'message': 'Password did not match, please try again'})
+            raise serializers.ValidationError({'success': False, 'message': 'Password did not match, please try again!'})
         return attrs
 
     def create(self, validated_data):
@@ -86,7 +69,3 @@ class WorkHistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = WorkHistory
         fields = ['id', 'account', 'company', 'location', 'start_date', 'end_date', 'is_current']
-
-
-
-

@@ -8,7 +8,6 @@ urlpatterns = [
     path('category-list-create/', views.CategoryListCreateAPIView.as_view()),
     path('tag-list-create/', views.TagListCreateApiView.as_view()),
 
-    path('type-list-create/', views.TagListCreateApiView.as_view()),
     path('position-list-create/', views.PositionListCreateApiView.as_view()),
     path('company-list-create/', views.CompanyListCreateApiView.as_view()),
 ]
