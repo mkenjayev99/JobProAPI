@@ -55,7 +55,7 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'account.Account'
 
 LOCAL_BASE_URL = 'http://127.0.0.1:8000'
-PROD_BASE_URL = 'https://example.uz'
+PROD_BASE_URL = 'http://kenjayev.jprq.live'
 
 
 MIDDLEWARE = [

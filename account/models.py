@@ -105,3 +105,6 @@ class WorkHistory(models.Model):
 
     def __str__(self):
         return f'{self.account} - {self.company}'
+
+    class Meta:
+        verbose_name_plural = 'Work Histories'

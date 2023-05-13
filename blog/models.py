@@ -9,6 +9,9 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name_plural = 'Categories'
+
 
 class Tag(models.Model):
     title = models.CharField(max_length=218)
@@ -20,7 +23,7 @@ class Tag(models.Model):
 class Blog(models.Model):
     title = models.CharField(max_length=218)
     content = RichTextField()
-    image = models.ImageField(upload_to='blog/')
+    image = models.ImageField(upload_to='blog/', null=True, blank=True)
 
     author = models.ForeignKey('account.Account', on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)

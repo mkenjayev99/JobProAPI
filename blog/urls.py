@@ -10,5 +10,6 @@ urlpatterns = [
 
     path('tag/rud/<int:pk>/', views.TagRUDAPIView.as_view()),
 
+    path('comment/create/<int:pk>/', views.CommentCreateAPIView.as_view()),
     path('comment/rud/<int:pk>/', views.CommentRUDAPIView.as_view()),
 ]

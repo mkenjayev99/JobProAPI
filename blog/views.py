@@ -42,6 +42,12 @@ class TagRUDAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAdminUserOrReadOnly]
 
 
+class CommentCreateAPIView(generics.CreateAPIView):
+    queryset = Comment
+    serializer_class = CommentSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
 class CommentRUDAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
