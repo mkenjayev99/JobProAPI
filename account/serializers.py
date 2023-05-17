@@ -37,7 +37,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
     password = serializers.CharField(max_length=68, write_only=True)
-    role = serializers.IntegerField(read_only=True)
     tokens = serializers.SerializerMethodField(read_only=True)
 
     def get_tokens(self, obj):
