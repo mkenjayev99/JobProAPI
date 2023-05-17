@@ -47,7 +47,7 @@ class LoginSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        fields = ('email', 'role', 'password', 'tokens')
+        fields = ('email', 'password', 'tokens')
 
     def validate(self, attrs):
         email = attrs.get('email')
