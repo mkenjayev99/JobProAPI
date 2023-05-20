@@ -131,4 +131,6 @@ dmypy.json
 .env
 
 # migration files
-*/migrations/*
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
