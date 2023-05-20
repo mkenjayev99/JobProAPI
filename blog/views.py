@@ -43,7 +43,7 @@ class TagRUDAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class CommentCreateAPIView(generics.CreateAPIView):
-    queryset = Comment
+    queryset = Comment.objects
     serializer_class = CommentSerializer
     permission_classes = [permissions.IsAuthenticated]
 
